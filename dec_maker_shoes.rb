@@ -1,17 +1,11 @@
 Shoes.app title: "main" do
-	
-	#changing the background color randomly
-	@caracters = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
-	@color = "#"
-	for i in 0..2 do
-		@rand_caract = @caracters[rand(@caracters.length)]
-		@color << @rand_caract
-	end
-	background @color
+
+	background "#48C"
 	
 	flow do
-		@left = stack(margin: 13, width: 350, height: 400) do
-			background "#BBB"
+		#stack on the top left: 
+		@left = stack(margin: 13, width: 320, height: 300) do
+			background "#ADC"
 			stack(height: 102) do
 				caption("Welcome :), ", stroke: white, font: "Trebuchet MS")
 				para("we are going to make a list of things you want to do...", stroke: white)
@@ -28,10 +22,11 @@ Shoes.app title: "main" do
 					stack do
 						append {@options.push(@option.text())}
 						stack do
-							append {@list.replace @options.each {|opt| "#{opt}"} }							
+							append do
+								@list.replace @options.each {|opt| "#{opt} \n"}									
+							end
 						end
 						append {@option.focus()}
-						append {@star.clear}
 					end
 				end
 			end
@@ -55,52 +50,54 @@ Shoes.app title: "main" do
 				end 
 			end
 
-			#nonsense animated star, because of fun
-			@star = stack do
-				@shape = star(points: 5, top: 30, left: 400, color: blue)
-				animate(3) do |i|
-		      @shape.top += (-20..20).rand
-		      @shape.left += (-20..20).rand
-		    end
-		  end
-
-		  #putting the advanced stuff where the main decision stuff is
-			#stack do
-			#	button "advanced" do
-			#		append {@all.clear { @options.each {|opt| para "#{opt} "} }}
-			#		append {@options.each{ list_box :items => ["1", "2", "3"] }}
-			#	end
-			#end
-
-			#to append all the things for the advanced decision instead of trying to replace stuff
+			#to append all the things for the advanced decision
 			flow do
 				button "advanced" do
 					flow(margin: 23) do
 						stack do
 							para "rate your options: "	
 						end
-						stack do
-							flow do
-								append {@options.each {|opt| para "| #{opt} "} }		
+						append do
+							flow(margin: 7) do
+								for i in 0..@options.length - 1 do
+									@list_box = list_box :items => ["1", "2", "3"], width: 40
+									para " #{i + 1}. #{@options[i]} \n"									
+								end
 							end
-						end 
-						append {@options.each{ @list_box = list_box :items => ["1", "2", "3"], width: 40 }}
-						append {@ratings = button "submit" }
+							#@options.each{ @list_box = list_box :items => ["1", "2", "3"], width: 80, margin: 7 }
+						end
+						#append {@ratings = button "submit", margin: 12 }
 						@list_box.change() {para "#{@list_box.text()}"}
 					end
-				end
-			end
+				end #end of the advanced button
+			end #end of the flow for advanced button
 
-			@background = flow(align: "right", width: 600) do
-				inscription sub(em("color: #{@color}"))
-			end
-			@background.click() {visit("/")} #this changes the background by reloading the page
+			@pro_cons = button "pro&cons"
 		end #this is the end of the @left stack
 
-		stack(margin: 13, height: 400, width: 200) do
-			background "#999"
+		#stack on the top right
+		stack(margin: 13, height: 300, width: 140) do
+			background "#BDD"
+			caption("your list", stroke: white)
 			@list = para ""
 		end
+
+		@pro_cons.click() do
+			para "your options: \n"
+			for opt in @options do
+				para "> #{opt} \n"
+			end
+			para "add pros and cons here: \n"
+			@proco_edit = edit_line
+			@pro = button "pro"
+			@con = button "con"
+		end
+
+		@pros = []
+		#@pro.click() do
+		#	para "click"
+			#@pros << @proco_edit.text()
+		#end
 
 	end #this is the end of the big flow 
 end #this is the end of "Shoes.app"
