@@ -1,11 +1,45 @@
+#loop through options and show each in new line
+def show_options(options)
+	options.collect do |opt|
+		"#{opt} \n"
+	end
+end
+
+#creates a list of light boxes one after another for the length of @options
+def create_list_boxes(options, options_hash)
+	if options_hash.length < options.length && options_hash[options[options_hash.length]].nil?
+		@list_box = list_box :items => ["1", "2", "3"], width: 40
+		para "#{options[options_hash.length]} \n"
+	else 
+		@right_sidebar.after(@list) {caption "your ratings:"}
+		for k in options_hash 
+			@right_sidebar.append {para "#{k}"[2..-8] + ": \t" + "#{k}"[-3..-3]}
+		end 
+		subm_ratings = button "submit rating" do
+			rating_array = []
+			for opt in options
+				options_hash[opt].to_i.times {rating_array.push(opt)} 
+			end
+			suggestion = rating_array[rand(rating_array.length)]
+			para("FSM calculated for you: strong(*#{suggestion}*)", em(" (rating: #{options_hash[suggestion]})"), stroke: white) 
+		end
+	end
+
+	@list_box.change() do
+		options_hash[options[options_hash.length]] = @list_box.text()
+		create_list_boxes(options, options_hash)	
+	end
+end
+
+#main app
 Shoes.app title: "main" do
 
-	background "#9CC"
+	background "#89B"
 	
 	flow do
 		#stack on the top left: 
 		@left = stack(margin: 13, width: 320, height: 300) do
-			background "#ADC"
+			background "#CCD"
 			stack(height: 102) do
 				caption("Welcome :), ", stroke: white, font: "Trebuchet MS")
 				para("we are going to make a list of things you want to do...", stroke: white)
@@ -14,35 +48,31 @@ Shoes.app title: "main" do
 			@option
 			@options = []
 			@rand_options = []
-			@ratings = []
+			options_hash = Hash.new()
 
-			@edit_line = flow(height: 43) do 
-				@option = edit_line
+			@edit_line = flow(height: 53) do 
+				@option = edit_line				
 				@submit = button "ok" do
 					stack do
 						append {@options.push(@option.text())}
-						stack do
-							append do
-								@list.replace @options.each {|opt| "#{opt} \n"}									
-							end
-						end
+						append {@list.replace show_options(@options)}								
 						append {@option.focus()}
 					end
 				end
 			end
 
 			@buttons = flow(height: 60) do
-				button "suggset I" do
+				button "suggset 1" do
 					@rand_num = rand(@options.length)
-					para em("We suggest you: #{@options[@rand_num]}")
+					para em("FSM suggests you: #{@options[@rand_num]}")
 				end
 
-				button 'suggest > I' do
+				button 'suggest > 1' do
 					for i in 0..rand(@options.length)
 						@rand_options << @options[rand(@options.length)]
 					end
 					stack do
-						para em("We suggest you: ")
+						para em("FSM suggests you: ")
 						for i in 0..rand(@rand_options.length)
 							para "* #{@rand_options[i]}"
 						end
@@ -50,36 +80,22 @@ Shoes.app title: "main" do
 				end 
 			end
 
-			#to append all the things for the advanced decision
+			#to append all the rating boxes for the rated decision
 			flow do
-				button "advanced" do
-					flow(margin: 23) do
-						stack do
-							para "rate your options: "	
-						end
-						append do
-							flow(margin: 7) do
-								for i in 0..@options.length - 1 
-									@list_box = list_box :items => ["1", "2", "3"], width: 40
-									para " #{i + 1}. #{@options[i]} \n"									
-								end
-							end
-							#@options.each{ @list_box = list_box :items => ["1", "2", "3"], width: 80, margin: 7 }
-						end
-						#append {@ratings = button "submit", margin: 12 }
-						@list_box.change() {para "#{@list_box.text()}"}
-					end
-				end #end of the advanced button
-			end #end of the flow for advanced button
+				button "rate" do
+					"Go ahead, rate your options: "
+					create_list_boxes(@options, options_hash)
+				end #end of the rate button
+			end #end of the flow for rate button
 
 			@pro_cons = button "pro&cons"
 		end #this is the end of the @left stack
 
 		#stack on the top right
-		stack(margin: 13, height: 300, width: 140) do
-			background "#BDD"
-			caption("your list", stroke: white)
-			@list = para ""
+		@right_sidebar = stack(margin: 13, height: 300, width: 200) do
+			background "#CCD"
+			@right_cap = caption "your list"
+			@list = para
 		end
 
 		@pro_cons.click() do
