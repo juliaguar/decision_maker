@@ -1,6 +1,6 @@
 Shoes.app title: "main" do
 
-	background "#48C"
+	background "#9CC"
 	
 	flow do
 		#stack on the top left: 
@@ -59,7 +59,7 @@ Shoes.app title: "main" do
 						end
 						append do
 							flow(margin: 7) do
-								for i in 0..@options.length - 1 do
+								for i in 0..@options.length - 1 
 									@list_box = list_box :items => ["1", "2", "3"], width: 40
 									para " #{i + 1}. #{@options[i]} \n"									
 								end
