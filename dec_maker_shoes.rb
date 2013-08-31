@@ -5,23 +5,47 @@ def show_options(options)
 	end
 end
 
+#loop through options a check box and a option each in new line
+def show_check_options(options, checkboxes)
+	para "\n"
+	for i in 0..options.length - 1
+		checkboxes[i] = check()
+		para "#{options[i]} \n"
+	end
+end
+
+#takes in an array with options and two hashes with options as keys and pros and cons as values and returns the best option
+def best_option(options, options_pros, options_cons)
+	option_values = Hash.new
+	for opt in options 
+		option_values[opt] = options_pros[opt].length - options_cons[opt].length
+	end
+end
+
 #creates a list of light boxes one after another for the length of @options
 def create_list_boxes(options, options_hash)
 	if options_hash.length < options.length && options_hash[options[options_hash.length]].nil?
-		@list_box = list_box :items => ["1", "2", "3"], width: 40
-		para "#{options[options_hash.length]} \n"
-	else 
-		@right_sidebar.after(@list) {caption "your ratings:"}
-		for k in options_hash 
-			@right_sidebar.append {para "#{k}"[2..-8] + ": \t" + "#{k}"[-3..-3]}
-		end 
-		subm_ratings = button "submit rating" do
-			rating_array = []
-			for opt in options
-				options_hash[opt].to_i.times {rating_array.push(opt)} 
+		@rating_action.append do
+			flow do
+				@list_box = list_box :items => ["1", "2", "3"], width: 40
+				para "#{options[options_hash.length]}"
 			end
-			suggestion = rating_array[rand(rating_array.length)]
-			para("FSM calculated for you: strong(*#{suggestion}*)", em(" (rating: #{options_hash[suggestion]})"), stroke: white) 
+		end
+		#@list_box = list_box :items => ["1", "2", "3"], width: 40
+		#para "#{options[options_hash.length]} \n"
+	else 
+		@right_sidebar.before(@ratings) {caption "your ratings:"}
+		@ratings.replace options_hash.collect { |k| "#{k}"[2..-8] + ": \t" + "#{k}"[-3..-3] + "\n"} 
+
+		@rating_action.append do
+			subm_ratings = button "submit rating" do
+				rating_array = []
+				for opt in options
+					options_hash[opt].to_i.times {rating_array.push(opt)} 
+				end
+				suggestion = rating_array[rand(rating_array.length)]
+				@rating_result.append {para("FSM calculated for you: ", strong("*#{suggestion}* \n"), stroke: white)}
+			end
 		end
 	end
 
@@ -34,15 +58,19 @@ end
 #main app
 Shoes.app title: "main" do
 
-	background "#89B"
+	background "#57A"
 	
 	flow do
 		#stack on the top left: 
-		@left = stack(margin: 13, width: 320, height: 300) do
-			background "#CCD"
-			stack(height: 102) do
+		@left = stack(margin: 10, width: 300, height: 330) do
+			background "#57A" #"#18C"
+
+			fill "#555"
+			oval(left: 140, top: 155, radius: 197, center: true)
+			
+			stack(height: 123) do
 				caption("Welcome :), ", stroke: white, font: "Trebuchet MS")
-				para("we are going to make a list of things you want to do...", stroke: white)
+				para("FSM is here to help you with your decision. First step: list the things you can't decide... ", stroke: white)
 			end
 
 			@option
@@ -83,8 +111,8 @@ Shoes.app title: "main" do
 			#to append all the rating boxes for the rated decision
 			flow do
 				button "rate" do
-					"Go ahead, rate your options: "
-					create_list_boxes(@options, options_hash)
+					append {@rating_instruction.show}
+					append {create_list_boxes(@options, options_hash)}
 				end #end of the rate button
 			end #end of the flow for rate button
 
@@ -92,29 +120,59 @@ Shoes.app title: "main" do
 		end #this is the end of the @left stack
 
 		#stack on the top right
-		@right_sidebar = stack(margin: 13, height: 300, width: 200) do
-			background "#CCD"
-			@right_cap = caption "your list"
+		@right_sidebar = stack(margin: 10, height: 330, width: 200) do
+			background "#8BD"
+			caption "your list"
 			@list = para
+			@ratings = para
 		end
+
+		#rating actions on the left
+		@rating_action = stack(margin: 10, width: 300) do
+			@rating_instruction = para "go ahead, rate your options :"
+			@rating_instruction.hide()
+		end
+
+		#show result of rating on the right
+		@rating_result = stack(width: 200, margin: 13) do
+			background "#59C"
+		end
+
+		options_pros = Hash.new
+		options_cons = Hash.new 
+		@checkboxes = []
 
 		@pro_cons.click() do
-			para "your options: \n"
-			for opt in @options do
-				para "> #{opt} \n"
-			end
 			para "add pros and cons here: \n"
 			@proco_edit = edit_line
-			@pro = button "pro"
-			@con = button "con"
-		end
-
-		@pros = []
-		#@pro.click() do
-		#	para "click"
-			#@pros << @proco_edit.text()
-		#end
-
+			@pro = button "pro" do
+				@con.hide()
+				show_check_options(@options, @checkboxes)
+				@add = button "add" do 		#creates new entry in options_pros hash, with the options which are checked by user
+					for i in 0..@options.length - 1
+						if @checkboxes[i].checked?()
+							options_pros[@options[i]] = []
+							options_pros[@options[i]].push(@proco_edit.text()) 
+						end
+					end
+					@con.show()
+				end
+			end
+			@con = button "con"	do
+				@pro.hide()
+				show_check_options(@options, @checkboxes)
+				@add = button "add" do 		#creates new entry in options_cons hash, with the options which are checked by user
+					for i in 0..@options.length - 1
+						if @checkboxes[i].checked?()
+							options_cons[@options[i]] = []
+							options_cons[@options[i]].push(@proco_edit.text()) 
+						end
+					end
+					@pro.show()
+				end
+			end	
+		end #end of the pro_cons.click() event
+		
 	end #this is the end of the big flow 
 end #this is the end of "Shoes.app"
 
