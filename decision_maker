@@ -1,0 +1,5 @@
+#!/usr/bin/env shoes
+
+# Just load the application to be run with Shoes
+# Inspired by https://github.com/hacketyhack/hacketyhack/blob/master/h-ety-h.rb
+load 'app.rb'
