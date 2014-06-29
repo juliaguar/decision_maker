@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+  margin: 100px;
+}
+#optionInputForm {
+  max-width: 300px;
+  margin: 50px;
+}
+
+#chooseOption {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

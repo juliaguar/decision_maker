@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="main.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+	<script language="javascript" type="text/javascript" src='main.js'></script>
+</head>
+
+<body ng-app='decisionMaker'>
+	<div class='container'>
+		<h1>decision making tool</h1>
+
+		<div id='optionInputForm' ng-controller='OptionsController'>
+			<ul class='list-unstyled'>
+				<li ng-repeat='option in options track by $index'>{{option}}</li>
+				<li >{{optionInput}}</li>
+			</ul>
+
+			<form role="form">
+			  <div class="form-group">
+			    <input type="text" class="form-control" placeholder="Enter your option" ng-model='optionInput'>
+			  </div>
+			  <button type="submit" class="btn btn-default" id='optionSubmit' ng-click='addOption()'>Submit</button>
+			</form>
+
+			<button class="btn btn-default" id='chooseOption' ng-click='decide()'>What to do?</button>
+			<div class='alert alert-success' ng-show='result'>{{result}}</div>
+
+		</div>
+		</div>
+
+	</div>
+<body>
