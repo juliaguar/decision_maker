@@ -34,6 +34,12 @@ app.controller('OptionsController', function($scope) {
     localStorage.setItem ('list', JSON.stringify($scope.options))
   }
 
+  $scope.editItem = function (item) {
+    $scope.optionInput = $scope.options[item];
+    $scope.options.splice(item, 1);
+    document.getElementById("optionInput").focus()
+  }
+
   $scope.deleteItem = function (item) {
     $scope.options.splice(item, 1);
   }

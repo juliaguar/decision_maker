@@ -19,6 +19,7 @@
 				<li class='list-group-item' ng-repeat='option in options track by $index'>
 					{{option}}
 					<i ng-click="deleteItem($index)" class="glyphicon glyphicon-remove pull-right"></i>
+					<i ng-click="editItem($index)" class="glyphicon glyphicon-edit pull-right"></i>
 				</li>
 
 			</li>
@@ -26,7 +27,7 @@
 
 			<form role="form" ng-submit='addOption()'>
 			  <div class="form-group">
-			    <input type="text" class="form-control" placeholder="Enter your option" ng-model='optionInput'>
+			    <input id='optionInput' type="text" class="form-control" placeholder="Enter your option" ng-model='optionInput' autofocus>
 			  </div>
 				<a class='pull-right' ng-click='clearAll()'>clear all</a>
 				<a class='pull-right' ng-click='saveList()'>save list</a>
