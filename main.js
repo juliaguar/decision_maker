@@ -44,21 +44,3 @@ app.controller('OptionsController', function($scope) {
     $scope.options.splice(item, 1);
   }
 })
-
-// var choose = function (sometext) {
-//   alert(sometext);
-// }
-//
-// $(document).ready(function(){
-//
-//   $("#optionSubmit").click(function(e) {
-//     e.preventDefault();
-//     $("#options").append(
-//       $('#optionInput').val() + ' <br>'
-//     );
-//   });
-//
-//   $('#chooseOption').click(function() {
-//     choose($('#options').text());
-//   })
-// })
