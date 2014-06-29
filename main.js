@@ -33,6 +33,10 @@ app.controller('OptionsController', function($scope) {
   $scope.saveList = function () {
     localStorage.setItem ('list', JSON.stringify($scope.options))
   }
+
+  $scope.deleteItem = function (item) {
+    $scope.options.splice(item, 1);
+  }
 })
 
 // var choose = function (sometext) {

@@ -16,7 +16,11 @@
 			<div class='alert alert-info' ng-show='result'>{{result}}</div>
 
 			<ul class='list-group'>
-				<li class='list-group-item' ng-repeat='option in options track by $index'>{{option}}</li>
+				<li class='list-group-item' ng-repeat='option in options track by $index'>
+					{{option}}
+					<i ng-click="deleteItem($index)" class="glyphicon glyphicon-remove pull-right"></i>
+				</li>
+
 			</li>
 			</ul>
 
@@ -29,8 +33,9 @@
 			 </form>
 
 			<button class="btn btn-default" id='chooseOption' ng-click='decide()'>Decide!</button>
-
+			<a href='http://randomtask.herokuapp.com/'>No ideas?</a>
 		</div>
+
 		</div>
 
 	</div>
