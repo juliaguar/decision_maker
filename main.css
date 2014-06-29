@@ -1,7 +1,12 @@
+body {
+  font-family: Indie Flower;
+}
+
 h1 {
   text-align: center;
-  margin: 100px;
+  margin: 70px;
 }
+
 #optionInputForm {
   max-width: 300px;
   margin: auto;
