@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 	<link href="main.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
 	<script language="javascript" type="text/javascript" src='main.js'></script>
@@ -34,11 +35,15 @@
 				<a class='pull-right' ng-click='saveList()'>save list</a>
 			 </form>
 
-			<button class="btn btn-default" id='chooseOption' ng-click='decide()'>Decide!</button>
-			<a href='http://randomtask.herokuapp.com/'>No ideas?</a>
+			<button class="btn btn-info chooseOption" ng-click='decide()'>Decide!</button>
+			<a class='chooseOption' href='http://randomtask.herokuapp.com/'>No ideas?</a>
 		</div>
 
 		</div>
 
+	</div>
+
+	<div class='footer'>
+		made by pikkupanda
 	</div>
 <body>
