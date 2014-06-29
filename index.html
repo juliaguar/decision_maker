@@ -15,7 +15,10 @@
 
 		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
 
-			<div class='alert alert-info' ng-show='result'>{{result}}</div>
+			<div class='alert alert-info' ng-show='result'>
+				{{result}}
+				<i ng-click="deleteResult(result)" class="glyphicon glyphicon-ok pull-right"></i>
+			</div>
 
 			<ul class='list-group'>
 				<li class='list-group-item' ng-repeat='option in options track by $index'>

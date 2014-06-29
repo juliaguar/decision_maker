@@ -28,6 +28,7 @@ app.controller('OptionsController', function($scope) {
   $scope.clearAll = function () {
     $scope.options = [];
     localStorage.setItem ('list', '')
+    $scope.result = '';
   }
 
   $scope.saveList = function () {
@@ -42,5 +43,13 @@ app.controller('OptionsController', function($scope) {
 
   $scope.deleteItem = function (item) {
     $scope.options.splice(item, 1);
+  }
+
+  $scope.deleteResult = function(result) {
+    var index = $scope.options.indexOf(result);
+    if (index >= 0) {
+        $scope.options.splice(index, 1);
+        $scope.result = '';
+    }
   }
 })
