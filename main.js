@@ -10,6 +10,10 @@ app.controller('OptionsController', function($scope) {
   $scope.decide = function () {
     $scope.result = $scope.options[Math.floor(Math.random()*$scope.options.length)];
   }
+
+  $scope.clearAll = function () {
+    $scope.options = [];
+  }
 })
 
 // var choose = function (sometext) {
