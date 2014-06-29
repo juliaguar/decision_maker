@@ -1,7 +1,21 @@
 var app = angular.module('decisionMaker', [])
 
 app.controller('OptionsController', function($scope) {
-  $scope.options = [];
+
+  $scope.init = function() {
+    try {
+      var opts = JSON.parse(localStorage.getItem('list'));
+
+      if(opts.length > 0) {
+        $scope.options = opts;
+      } else {
+        $scope.options = [];
+      }
+    } catch (e) {
+      $scope.options = [];
+    }
+  }
+
   $scope.addOption = function () {
     $scope.options.push($scope.optionInput);
     $scope.optionInput = '';
@@ -13,6 +27,11 @@ app.controller('OptionsController', function($scope) {
 
   $scope.clearAll = function () {
     $scope.options = [];
+    localStorage.setItem ('list', '')
+  }
+
+  $scope.saveList = function () {
+    localStorage.setItem ('list', JSON.stringify($scope.options))
   }
 })
 

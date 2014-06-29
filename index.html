@@ -11,7 +11,7 @@
 	<div class='container'>
 		<h1>What to do?</h1>
 
-		<div id='optionInputForm' ng-controller='OptionsController'>
+		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
 
 			<div class='alert alert-info' ng-show='result'>{{result}}</div>
 
@@ -25,6 +25,7 @@
 			    <input type="text" class="form-control" placeholder="Enter your option" ng-model='optionInput'>
 			  </div>
 				<a class='pull-right' ng-click='clearAll()'>clear all</a>
+				<a class='pull-right' ng-click='saveList()'>save list</a>
 			 </form>
 
 			<button class="btn btn-default" id='chooseOption' ng-click='decide()'>Decide!</button>
