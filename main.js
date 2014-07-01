@@ -73,7 +73,9 @@ app.controller('OptionsController', function($scope) {
   }
 
   $scope.incrementRate = function (item) {
-    $scope.ratedOptions.push(item);
+    if ($scope.countOccurrences(item).length <= 5) {
+        $scope.ratedOptions.push(item);
+    }
   }
 
   $scope.countOccurrences = function (item) {

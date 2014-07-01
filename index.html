@@ -32,7 +32,7 @@
 					{{option}}
 					<i ng-click="deleteItem($index)" class="glyphicon glyphicon-remove pull-right"></i>
 					<i ng-click="editItem($index)" class="glyphicon glyphicon-edit pull-right"></i>
-					<i ng-show="rate" ng-repeat='i in countOccurrences(option) track by $index' ng-click="incrementRate(option)" class="glyphicon glyphicon-star pull-right"></i>
+					<i ng-show="rate" ng-repeat='i in countOccurrences(option) track by $index' ng-click="incrementRate(option)" class="glyphicon glyphicon-star-empty pull-right"></i>
 				</li>
 			</ul>
 
