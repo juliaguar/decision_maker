@@ -1,20 +1,3 @@
-var getAllOccurrences = function (arr, word) {
-  var indices = []
-  for (i in arr) {
-    if(word === arr[i]) {
-      indices.push(i);
-    }
-  }
-  return indices;
-}
-
-var deleteAllOccurrences = function (arr, word) {
-  var indices = getAllOccurrences(arr, word);
-  for (i in indices) {
-    arr.splice(indices[i], 1);
-  }
-}
-
 var app = angular.module('decisionMaker', [])
 
 app.controller('OptionsController', function($scope) {
@@ -67,14 +50,15 @@ app.controller('OptionsController', function($scope) {
     document.getElementById("optionInput").focus()
   }
 
-  $scope.deleteItem = function (item) {
-    $scope.options.splice(item, 1);
-    deleteAllOccurrences($scope.ratedOptions, $scope.ratedOptions[item]);
+  $scope.deleteItem = function (index) {
+    $scope.ratedOptions = $scope.ratedOptions.filter(function (value) {return value !== $scope.options[index]});
+    $scope.options.splice(index, 1);
   }
 
   $scope.deleteResult = function(result) {
     var index = $scope.options.indexOf(result);
     if (index >= 0) {
+        $scope.ratedOptions = $scope.ratedOptions.filter(function (value) {return value !== $scope.options[index]});
         $scope.options.splice(index, 1);
         $scope.result = '';
     }

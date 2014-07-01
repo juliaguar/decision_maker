@@ -7,8 +7,8 @@
 
 	<!-- online -->
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-	<!-- <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'> -->
-	<!-- <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'> -->
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
 
 	<!-- custom -->
@@ -32,7 +32,6 @@
 					{{option}}
 					<i ng-click="deleteItem($index)" class="glyphicon glyphicon-remove pull-right"></i>
 					<i ng-click="editItem($index)" class="glyphicon glyphicon-edit pull-right"></i>
-					<!--  add some ng-repeat for the number of occurences of option in ratedOptions-->
 					<i ng-show="rate" ng-repeat='i in countOccurrences(option) track by $index' ng-click="incrementRate(option)" class="glyphicon glyphicon-star pull-right"></i>
 				</li>
 			</ul>
