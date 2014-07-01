@@ -33,7 +33,7 @@
 					<i ng-click="deleteItem($index)" class="glyphicon glyphicon-remove pull-right"></i>
 					<i ng-click="editItem($index)" class="glyphicon glyphicon-edit pull-right"></i>
 					<!--  add some ng-repeat for the number of occurences of option in ratedOptions-->
-					<i ng-show="rate" ng-click="incrementRate($index)" class="glyphicon glyphicon-star pull-right"></i>
+					<i ng-show="rate" ng-repeat='i in countOccurrences(option) track by $index' ng-click="incrementRate(option)" class="glyphicon glyphicon-star pull-right"></i>
 				</li>
 			</ul>
 
@@ -42,7 +42,7 @@
 			    <input id='optionInput' type="text" class="form-control" placeholder="Enter your option" ng-model='optionInput' autofocus>
 			  </div>
 				<a class="pull-right" ng-click="clearAll()">clear all</a>
-				<a class="pull-right" ng-click="saveList()">save list</a>
+				<a ng-show="!rate" class="pull-right" ng-click="saveList()">save list</a>
 				<a ng-show="!rate" ng-click="showRating()" class="pull-right">rate</a>
 				<a ng-show="rate" ng-click="noRating()" class="pull-right">no rate</a>
 			 </form>
