@@ -25,8 +25,13 @@ app.controller('OptionsController', function($scope) {
     $scope.result = $scope.options[Math.floor(Math.random()*$scope.options.length)];
   }
 
+  $scope.decideRated = function () {
+    $scope.result = $scope.ratedOptions[Math.floor(Math.random()*$scope.ratedOptions.length)];
+  }
+
   $scope.clearAll = function () {
     $scope.options = [];
+    $scope.ratedOptions = [];
     localStorage.setItem ('list', '')
     $scope.result = '';
   }
@@ -52,4 +57,17 @@ app.controller('OptionsController', function($scope) {
         $scope.result = '';
     }
   }
+
+  $scope.showRating = function () {
+    $scope.rate = true;
+  }
+
+  $scope.noRating = function () {
+    $scope.rate = false;
+  }
+
+  $scope.incrementRate = function (item) {
+    $scope.ratedOptions.push($scope.options[item]);
+  }
+
 })
