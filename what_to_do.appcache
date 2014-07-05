@@ -5,9 +5,12 @@ CACHE:
 index.html
 main.js
 main.css
-css/bootstrap.min.css
-js/angular.min.js
-
+bower_components/bootstrap/dist/css/bootstrap.min.css
+bower_components/angular/angular.min.js
+bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot
+bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg
+bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf
+bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff
 
 NETWORK:
 *
