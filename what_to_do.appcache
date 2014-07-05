@@ -1,0 +1,15 @@
+CACHE MANIFEST
+# 05.07.2014 II
+
+CACHE:
+index.html
+main.js
+main.css
+css/bootstrap.min.css
+js/angular.min.js
+
+
+NETWORK:
+*
+
+
