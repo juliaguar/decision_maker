@@ -41,7 +41,9 @@ app.controller('OptionsController', function($scope) {
   }
 
   $scope.saveList = function () {
-    localStorage.setItem ('list', JSON.stringify($scope.options))
+    localStorage.setItem ('list', JSON.stringify($scope.options));
+    $scope.saved = 'true';
+    $scope.hideAlert();
   }
 
   $scope.editItem = function (item) {
@@ -86,5 +88,13 @@ app.controller('OptionsController', function($scope) {
       }
     }
     return items;
+  }
+
+  $scope.hideAlert = function () {
+    setTimeout(function () {
+      $scope.$apply(function() {
+        $scope.saved = false;
+      });
+    }, 2000);
   }
 })

@@ -24,9 +24,13 @@
 
 <body ng-app='decisionMaker'>
 	<div class='container'>
-		<h1>What to do?</h1>
-
 		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
+			<div class='alert alert-success' ng-show='saved'>
+				<span>your list was saved</span>
+				<i class="glyphicon glyphicon-ok pull-right"></i>
+			</div>
+
+			<h1>What to do?</h1>
 
 			<div class='alert alert-info' ng-show='result'>
 				{{result}}
