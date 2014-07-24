@@ -98,3 +98,16 @@ app.controller('OptionsController', function($scope) {
     }, 2000);
   }
 })
+
+app.controller('ShouldIController', function($scope) {
+  var answers = ['sure', 'yep','Why do you even ask?','maybe','certainly not', 'nope']
+
+  $scope.submitQuestion = function () {
+    $scope.answer = answers[3];
+  }
+
+  $scope.deleteAnswer = function () {
+    $scope.answer = '';
+    $scope.question = '';
+  }
+})

@@ -61,10 +61,25 @@
 			<a class="chooseOption" href="http://randomtask.herokuapp.com/">No ideas?</a>
 		</div>
 
+	<div id='shouldI' ng-controller='ShouldIController'>
+		<h1>Should I ...?</h1>
+		<ul class='list-group'>
+			<li ng-show='question' class='list-group-item'>
+				{{question}}
+			</li>
+		</ul>
+		<div class='alert alert-info' ng-show='answer'>
+			<span>{{answer}}</span>
+			<i ng-click="deleteAnswer()" class="glyphicon glyphicon-remove pull-right"></i>
 		</div>
-
+		<form role='form' ng-submit='submitQuestion()'>
+			<div class="form-group">
+				<input id='question' type="text" class="form-control" placeholder="Should I do it?" ng-hide='answer' ng-model='question'>
+			</div>
+		</form>
 	</div>
 
+	</div>
 	<div class='footer'>
 		made by pikkupanda
 	</div>
