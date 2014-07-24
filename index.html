@@ -25,7 +25,7 @@
 <body ng-app='decisionMaker'>
 	<div class='container'>
 		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
-			<div class='alert alert-success' ng-show='saved'>
+			<div class='alert alert-success' ng-class="saved ? 'fade-out':''" ng-show='saved'>
 				<span>your list was saved</span>
 				<i class="glyphicon glyphicon-ok pull-right"></i>
 			</div>
@@ -54,7 +54,7 @@
 				<a ng-show="!rate" class="pull-right" ng-click="saveList()">save list</a>
 				<a ng-show="!rate" ng-click="showRating()" class="pull-right">rate</a>
 				<a ng-show="rate" ng-click="noRating()" class="pull-right">no rate</a>
-			 </form>
+			</form>
 
 			<button ng-show="!rate" class="btn btn-info chooseOption" ng-click="decide()">Decide!</button>
 			<button ng-show="rate" class="btn btn-info chooseOption" ng-click="decideRated()">rated decision!</button>
