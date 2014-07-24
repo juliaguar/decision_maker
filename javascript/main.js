@@ -100,14 +100,23 @@ app.controller('OptionsController', function($scope) {
 })
 
 app.controller('ShouldIController', function($scope) {
-  var answers = ['sure', 'yep','Why do you even ask?','maybe','certainly not', 'nope']
+  var answers = ['Of course!', 'Yeah!','sure', 'Why not?','yep','Why do you even ask?','maybe', 'not sure', 'depends...','certainly not', 'nope', "I don't think so.", "I wouldn't do it, if I were you.", '*shakes head*']
 
   $scope.submitQuestion = function () {
-    $scope.answer = answers[3];
+    $scope.answer = answers[$scope.calcMD5($scope.question)];
+  }
+
+  $scope.calcMD5 = function(str) {
+    var hash = str.split('').reduce(function(acc, current){return acc + current.charCodeAt(0);},0);
+    var result = hash % answers.length;
+    return result;
   }
 
   $scope.deleteAnswer = function () {
     $scope.answer = '';
     $scope.question = '';
+    // document.getElementById("question").focus()
   }
+
+
 })

@@ -12,6 +12,7 @@
 	<!-- offline -->
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 
 	<!-- online -->
 	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
@@ -19,11 +20,14 @@
 
 	<!-- custom -->
 	<link href="main.css" rel="stylesheet">
-	<script language="javascript" type="text/javascript" src='main.js'></script>
+	<script language="javascript" type="text/javascript" src='javascript/main.js'></script>
+	<script language="javascript" type="text/javascript" src='javascript/slider.js'></script>
 </head>
 
 <body ng-app='decisionMaker'>
 	<div class='container'>
+		<span class='slideButton' onclick='slide()'>&#10097</span>
+		<span class='slideButtonleft' onclick='slide()'>&#10096</span>
 		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
 			<div class='alert alert-success' ng-class="saved ? 'fade-out':''" ng-show='saved'>
 				<span>your list was saved</span>
@@ -74,7 +78,7 @@
 		</div>
 		<form role='form' ng-submit='submitQuestion()'>
 			<div class="form-group">
-				<input id='question' type="text" class="form-control" placeholder="Should I do it?" ng-hide='answer' ng-model='question'>
+				<input id='question' type="text" class="form-control" placeholder="Should I do it?" ng-hide='answer' ng-model='question' autofocus>
 			</div>
 		</form>
 	</div>
