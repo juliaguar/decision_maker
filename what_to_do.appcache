@@ -1,12 +1,14 @@
 CACHE MANIFEST
-# 24.07.2014 I
+# 24.07.2014
 
 CACHE:
 index.html
-main.js
+javascript/slider.js
+javascript/main.js
 main.css
 bower_components/bootstrap/dist/css/bootstrap.min.css
 bower_components/angular/angular.min.js
+bower_components/jquery/dist/jquery.min.js
 bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot
 bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg
 bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf

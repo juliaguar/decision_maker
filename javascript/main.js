@@ -100,7 +100,12 @@ app.controller('OptionsController', function($scope) {
 })
 
 app.controller('ShouldIController', function($scope) {
-  var answers = ['Of course!', 'Yeah!','sure', 'Why not?','yep','Why do you even ask?','maybe', 'not sure', 'depends...','certainly not', 'nope', "I don't think so.", "I wouldn't do it, if I were you.", '*shakes head*']
+  var answers = [
+      'Of course!', 'Yeah!', 'sure', 'Do it!', 'Why not?',
+      'yep', 'yes :)'
+      'Why do you even ask?', 'maybe', 'not sure', 'depends...',
+      'certainly not', 'nope', "I don't think so.", "I wouldn't do it, if I were you.", '*shakes head*',
+      'seriously?', "please don't"];
 
   $scope.submitQuestion = function () {
     $scope.answer = answers[$scope.calcMD5($scope.question)];
@@ -115,7 +120,6 @@ app.controller('ShouldIController', function($scope) {
   $scope.deleteAnswer = function () {
     $scope.answer = '';
     $scope.question = '';
-    // document.getElementById("question").focus()
   }
 
 
