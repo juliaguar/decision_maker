@@ -48,7 +48,7 @@ app.controller('OptionsController', function($scope) {
 
   $scope.editItem = function (item) {
     $scope.optionInput = $scope.options[item];
-    $scope.options.splice(item, 1);
+    $scope.deleteItem(item);
     document.getElementById("optionInput").focus()
   }
 
