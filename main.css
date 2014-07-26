@@ -43,11 +43,10 @@ h1 {
 
 
  a, i {
-   margin-top: -10px;
   margin-left: 10px;
 }
 
-i {
+.slideButton > i, .slideButtonleft > i {
   margin-top: 8px;
 }
 
