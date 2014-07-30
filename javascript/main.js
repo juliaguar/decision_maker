@@ -124,3 +124,23 @@ app.controller('ShouldIController', function($scope) {
 
 
 })
+
+app.controller('proConController', function($scope) {
+  $scope.options = [];
+
+  $scope.submitQuestion = function() {
+    $scope.hideForm = true;
+    document.getElementById('option').focus()
+  }
+
+  $scope.editQuestion = function() {
+    $scope.hideForm = false;
+    document.getElementById('question').focus()
+  }
+
+  $scope.addOption = function () {
+    $scope.options.push($scope.option)
+    $scope.option = ''
+    document.getElementById('option').focus()
+  }
+})

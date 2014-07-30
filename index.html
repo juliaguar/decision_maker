@@ -28,6 +28,7 @@
 	<div class='container'>
 		<span class='slideButton' onclick='slide()'><i class='glyphicon glyphicon-chevron-right'></i></span>
 		<span class='slideButtonleft' onclick='slide()'><i class='glyphicon glyphicon-chevron-left'></i></span>
+
 		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
 			<div class='alert alert-success' ng-class="saved ? 'fade-out':''" ng-show='saved'>
 				<span>your list was saved</span>
@@ -79,6 +80,35 @@
 		<form role='form' ng-submit='submitQuestion()'>
 			<div class="form-group">
 				<input id='question' type="text" class="form-control" placeholder="Should I do it?" ng-hide='answer' ng-model='question' autofocus>
+			</div>
+		</form>
+	</div>
+
+	<div id='proCon' ng-controller='proConController'>
+		<h1>Pros and Cons</h1>
+		<ul class='list-group'>
+			<li ng-show='hideForm' class='list-group-item' ng-click='editQuestion()'>
+				{{question}}
+			</li>
+		</ul>
+
+		<form role='form' ng-submit='submitQuestion()'>
+			<div class="form-group">
+				<input id='question' type="text" class="form-control" placeholder="What do you want to decide?" ng-hide='hideForm' ng-model='question' autofocus>
+			</div>
+		</form>
+
+		<ul class='list-group'>
+			<li class='list-group-item' ng-repeat='option in options track by $index'>
+				<div>{{option}}</div>
+				<input id='pro' type="text" class="form-control" placeholder="pro" ng-model='pro'>
+				<input id='con' type="text" class="form-control" placeholder="con" ng-model='con'>
+			</li>
+		</ul>
+
+		<form role='form' ng-submit='addOption()'>
+			<div class="form-group">
+				<input id='option' type="text" class="form-control" placeholder="Type your option..." ng-show='hideForm' ng-model='option' autofocus>
 			</div>
 		</form>
 	</div>

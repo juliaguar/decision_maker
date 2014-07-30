@@ -72,3 +72,8 @@ h1 {
   -moz-opacity: 0.5;
   opacity: 0.5;
 }
+
+#pro, #con {
+  width: 49%;
+  display: inline-block;
+}
