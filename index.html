@@ -92,6 +92,10 @@
 			</li>
 		</ul>
 
+		<div ng-show='bestOption' class='alert alert-info'>
+			{{bestOption}}
+		</div>
+
 		<form role='form' ng-submit='submitQuestion()'>
 			<div class="form-group">
 				<input id='question' type="text" class="form-control" placeholder="What do you want to decide?" ng-hide='hideForm' ng-model='question' autofocus>
@@ -127,6 +131,7 @@
 				<input id='option' type="text" class="form-control" placeholder="Type your option..." ng-show='hideForm' ng-model='option' autofocus>
 			</div>
 		</form>
+		<button ng-show="hideForm" class="btn btn-info chooseOption" ng-click="decide()">Decide!</button>
 	</div>
 
 	</div>

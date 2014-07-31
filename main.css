@@ -29,10 +29,9 @@ h1 {
   display: none;
 }
 
-#shouldI {
-  max-width: 350px;
+#proCon {
+  max-width: 500px;
   margin: 20px auto;
-  font-family: 'Dosis';
 }
 
 .chooseOption {

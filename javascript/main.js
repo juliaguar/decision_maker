@@ -159,4 +159,24 @@ app.controller('proConController', function($scope) {
     }
     $scope.cons[option].push(con)
   }
+
+  $scope.decide = function () {
+    var bestOption = ''
+    var bestScore = 0
+    $scope.options.forEach(function(option, index) {
+      var numberOfPros = 0
+      var numberOfCons = 0
+
+      if($scope.pros[option]) {numberOfPros = $scope.pros[option].length}
+      if($scope.cons[option]) {numberOfCons = $scope.cons[option].length}
+
+      score =  numberOfPros - numberOfCons
+
+      if(score > bestScore) {
+        bestScore = score
+        bestOption = option
+      }
+    })
+    $scope.bestOption = bestOption
+  }
 })
