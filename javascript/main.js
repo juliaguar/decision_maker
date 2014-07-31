@@ -127,6 +127,8 @@ app.controller('ShouldIController', function($scope) {
 
 app.controller('proConController', function($scope) {
   $scope.options = [];
+  $scope.pros = {};
+  $scope.cons = {};
 
   $scope.submitQuestion = function() {
     $scope.hideForm = true;
@@ -142,5 +144,19 @@ app.controller('proConController', function($scope) {
     $scope.options.push($scope.option)
     $scope.option = ''
     document.getElementById('option').focus()
+  }
+
+  $scope.submitPro = function (option, pro) {
+    if(!$scope.pros[option]) {
+        $scope.pros[option] = []
+    }
+    $scope.pros[option].push(pro)
+  }
+
+  $scope.submitCon = function (option, con) {
+    if(!$scope.cons[option]) {
+        $scope.cons[option] = []
+    }
+    $scope.cons[option].push(con)
   }
 })
