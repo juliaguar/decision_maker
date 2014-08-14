@@ -67,7 +67,7 @@
 
 	<div id='shouldI' ng-controller='ShouldIController'>
 		<h1>Should I ...?</h1>
-		<ul class='list-group'>
+		<ul class='list-group' ng-click='editQuestion()'>
 			<li ng-show='answer' class='list-group-item'>
 				{{question}}
 			</li>
