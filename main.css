@@ -26,10 +26,14 @@ h1 {
   max-width: 350px;
   margin: 20px auto;
   font-family: 'Dosis';
+}
+
+#optionInputForm {
   display: none;
 }
 
 #proCon {
+  display: none;
   max-width: 500px;
   margin: 20px auto;
 }
