@@ -128,3 +128,59 @@ app.controller('ShouldIController', function($scope) {
   }
 
 })
+
+app.controller('proConController', function($scope) {
+  $scope.options = [];
+  $scope.pros = {};
+  $scope.cons = {};
+
+  $scope.submitQuestion = function() {
+    $scope.hideForm = true;
+    document.getElementById('option').focus()
+  }
+
+  $scope.editQuestion = function() {
+    $scope.hideForm = false;
+    document.getElementById('question').focus()
+  }
+
+  $scope.addOption = function () {
+    $scope.options.push($scope.option)
+    $scope.option = ''
+    document.getElementById('option').focus()
+  }
+
+  $scope.submitPro = function (option, pro) {
+    if(!$scope.pros[option]) {
+        $scope.pros[option] = []
+    }
+    $scope.pros[option].push(pro)
+  }
+
+  $scope.submitCon = function (option, con) {
+    if(!$scope.cons[option]) {
+        $scope.cons[option] = []
+    }
+    $scope.cons[option].push(con)
+  }
+
+  $scope.decide = function () {
+    var bestOption = ''
+    var bestScore = 0
+    $scope.options.forEach(function(option, index) {
+      var numberOfPros = 0
+      var numberOfCons = 0
+
+      if($scope.pros[option]) {numberOfPros = $scope.pros[option].length}
+      if($scope.cons[option]) {numberOfCons = $scope.cons[option].length}
+
+      score =  numberOfPros - numberOfCons
+
+      if(score > bestScore) {
+        bestScore = score
+        bestOption = option
+      }
+    })
+    $scope.bestOption = bestOption
+  }
+})

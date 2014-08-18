@@ -23,17 +23,20 @@ h1 {
   float: left;
 }
 
-#optionInputForm {
+#optionInputForm, #shouldI {
   max-width: 350px;
   margin: 20px auto;
   font-family: 'Dosis';
+}
+
+#optionInputForm {
   display: none;
 }
 
-#shouldI {
-  max-width: 350px;
+#proCon {
+  display: none;
+  max-width: 500px;
   margin: 20px auto;
-  font-family: 'Dosis';
 }
 
 .chooseOption {
@@ -73,4 +76,9 @@ h1 {
   -webkit-opacity: 0.5;
   -moz-opacity: 0.5;
   opacity: 0.5;
+}
+
+.pros, .cons {
+  display: inline-block;
+  margin-right: 5px;
 }
