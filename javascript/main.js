@@ -164,6 +164,14 @@ app.controller('proConController', function($scope) {
     $scope.cons[option].push(con)
   }
 
+  $scope.deletePro = function(option, index) {
+    $scope.pros[option].splice(index, 1)
+  }
+
+  $scope.deleteCon = function(option, index) {
+    $scope.cons[option].splice(index, 1)
+  }
+
   $scope.decide = function () {
     var bestOption = ''
     var bestScore = 0

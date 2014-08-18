@@ -108,11 +108,13 @@
 
 					<div class='pros alert alert-success' ng-repeat='pro in pros[option] track by $index'>
 						{{pro}}
+						<i ng-click="deletePro(option, $index)" class="glyphicon glyphicon-remove pull-right"></i>
 					</div>
 
 				<div>
 					<div class='cons alert alert-danger' ng-repeat='contra in cons[option] track by $index'>
 						{{contra}}
+						<i ng-click="deleteCon(option, $index)" class="glyphicon glyphicon-remove pull-right"></i>
 					</div>
 				</div>
 
