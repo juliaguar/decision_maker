@@ -105,6 +105,7 @@
 		<ul class='list-group'>
 			<li class='list-group-item' ng-repeat='option in options track by $index'>
 				<div>{{option}}</div>
+				<i ng-click="deleteOption(option)" class="glyphicon glyphicon-remove pull-right"></i>
 
 					<div class='pros alert alert-success' ng-repeat='pro in pros[option] track by $index'>
 						{{pro}}
