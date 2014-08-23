@@ -193,6 +193,10 @@ app.controller('proConController', function($scope) {
         bestScore = score
         bestOption = option
       }
+      else if (bestOption === '') {
+        bestScore = score
+        bestOption = option
+      }
     })
     $scope.bestOption = bestOption
   }
