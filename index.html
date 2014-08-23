@@ -26,8 +26,8 @@
 
 <body ng-app='decisionMaker'>
 	<div class='container'>
-		<span class='slideButton' onclick='slide()'><i class='glyphicon glyphicon-chevron-right'></i></span>
-		<span class='slideButtonleft' onclick='slide()'><i class='glyphicon glyphicon-chevron-left'></i></span>
+		<span class='slideButton' onclick='slideRight()'><i class='glyphicon glyphicon-chevron-right'></i></span>
+		<span class='slideButtonleft' onclick='slideLeft()'><i class='glyphicon glyphicon-chevron-left'></i></span>
 
 		<div id='optionInputForm' ng-controller='OptionsController' ng-init='init()'>
 			<div class='alert alert-success' ng-class="saved ? 'fade-out':''" ng-show='saved'>
