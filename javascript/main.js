@@ -80,6 +80,13 @@ app.controller('OptionsController', function($scope) {
     }
   }
 
+  $scope.decrementRate = function(option) {
+    if ($scope.countOccurrences(option).length > 1) {
+      var index = $scope.ratedOptions.indexOf(option);
+      $scope.ratedOptions.splice(index, 1)
+    }
+  }
+
   $scope.countOccurrences = function (item) {
     var items = [];
     for(var i = 0; i < $scope.ratedOptions.length; i++) {
